@@ -1,0 +1,27 @@
+{
+  "name": "twitter-scheduler",
+  "version": "1.0.0",
+  "description": "ses",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tsarpf/twitter-scheduler.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tsarpf/twitter-scheduler/issues"
+  },
+  "homepage": "https://github.com/Tsarpf/twitter-scheduler#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cron": "^1.1.0",
+    "express": "^4.14.0",
+    "sqlite3": "^3.1.4",
+    "standard": "^8.1.0",
+    "twitter": "^1.4.0"
+  }
+}
