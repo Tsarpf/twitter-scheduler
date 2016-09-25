@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rxjs-dom/7.0.3/rx.dom.js"></script>
     <script type="text/javascript" src="/app.js"></script>
@@ -9,7 +10,11 @@
     </title>
   </head>
   <body>
-    mmyellow
+    <div class="body-container">
+      <textarea class="poem-entry" name="poem"></textarea>
+      <button name="submit"> Send </button>
+      <p>Characters left <span id="char-left">140</span></p>
+    </div>
 
   </body>
 </html>
