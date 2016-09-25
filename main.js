@@ -59,7 +59,6 @@ function postTweet(tweet) {
       console.log(error)
     }
     console.log(tweet)  // Tweet body.
-    //console.log(response)  // Raw response object.
   })
 }
 
@@ -85,7 +84,7 @@ function getPoemAndPost() {
 const cronTasks = [
   '00 00 9 * * 1-5', // every weekday at 09:00
   '00 00 15 * * 1-5', // every weekday at 15:00
-  '* * * * * *' // every second
+  //'* * * * * *' // every second
 ]
 
 cronTasks.forEach((cronString) => {
