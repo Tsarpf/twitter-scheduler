@@ -95,14 +95,31 @@ cronTasks.forEach((cronString) => {
   }, true, 'Europe/Helsinki')
 })
 
+/*
+
+Web server stuff
+---------------
+
+*/
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.post('/poem', function (req, res) {
-  res.send('Got a POST request')
-  console.log(req.body)
+  const poem = req.body.poem
+  if (poem && poem.length && poem.length > 0) {
+    console.log(poem)
+    insertPoem('webbikäli', poem, (err) => {
+      if (!err) {
+        console.log('inserted')
+      } else {
+        console.log('insert fail: ', err)
+      }
+    })
+    return res.json({state: 'success'})
+  }
+  return res.json({state: 'fail'})
 })
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html')
@@ -111,13 +128,3 @@ app.use(express.static(__dirname + '/public'))
 const port = 9876
 app.listen(port), () => console.log('Listening on port ', port)
 
-/*
-insertPoem('tsurba', 'Nyt on alla itse tehty softa\nSen avulla postataan kohta', (err) => {
-  if (!err) {
-    console.log('inserted')
-  } else {
-    console.log('insert fail: ', err)
-  }
-})
-
-*/
