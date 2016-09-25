@@ -45,10 +45,6 @@ function setPoemToPosted(row) {
 }
 
 const secretObj = JSON.parse(fs.readFileSync('./secrets/settings.json', 'utf8'))
-console.log(secretObj.consumer_key)
-console.log(secretObj.consumer_secret)
-console.log(secretObj.access_token_key)
-console.log(secretObj.access_token_secret)
 const client = new Twitter({
   consumer_key: secretObj.consumer_key,
   consumer_secret: secretObj.consumer_secret,
