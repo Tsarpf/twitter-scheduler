@@ -5,33 +5,35 @@ window.onload = () => {
   const submit = document.querySelector('button[name=submit]')
   const charLeft = document.querySelector('#char-left')
 
-  const inputChange = Rx.DOM.input(input)
-  const submitClick = Rx.Observable.fromEvent(submit, 'click')
+  const inputLength = Rx.DOM.input(input).map(() => input.value.length)
 
-  const changeSub = inputChange.subscribe(
-    () => {
-      charLeft.innerHTML = 140 - input.value.length
+  const submitClick = Rx.DOM.click(submit)
+        .map(() => input.value)
+        .filter(x => x !== '')
+
+  submitClick.subscribe((text) => {
+    input.value = ''
+    charLeft.innerHTML = 140
+    fetch('/poem', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        poem: text
+      })
+    }).then(response => response.json())
+      .then(json => {
+        console.log('then what?', json)
+      })
+  })
+
+  inputLength.subscribe(
+    (length) => {
+      charLeft.innerHTML = 140 - length
     },
     (error) => console.log(error),
     () => console.log('input changes finished')
   )
-
-  const clickSub = submitClick.subscribe(
-    () => {
-      Rx.DOM.post('/poem', {poem: input.value})
-        .subscribe(
-          function (data) {
-            console.log('got data')
-            console.log(data.response)
-          },
-          function (err) {
-            console.log(err)
-            // Log the error
-          }
-        )
-    },
-    (error) => console.log(error),
-    () => console.log('clicking finished')
-  )
-
 }
