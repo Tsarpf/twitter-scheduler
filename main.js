@@ -53,7 +53,7 @@ const client = new Twitter({
 })
 
 function postTweet(tweet) {
-  client.post('statuses/update', {status: tweet}, function(error, tweet, response) {
+  client.post('statuses/update', {status: tweet}, function(error, tweet) {
     if (error) {
       console.log('error posting tweet!')
       console.log(error)
@@ -99,8 +99,8 @@ cronTasks.forEach((cronString) => {
 
 Web server stuff
 ---------------
-
 */
+
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -125,6 +125,6 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html')
 })
 app.use(express.static(__dirname + '/public'))
-const port = 9876
-app.listen(port), () => console.log('Listening on port ', port)
+const port = secretObj.port
+app.listen(port), () => console.log('Listening on port ', secretObj.port)
 
