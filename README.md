@@ -1,5 +1,5 @@
 # twitter-scheduler
-Simple scheduler thing with node and rxjs
+Simple scheduler thing made with node and rxjs
 
 `main.js` is the backend, front-end is under `/public`
 
